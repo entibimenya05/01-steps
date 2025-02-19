@@ -16,18 +16,21 @@ function App() {
   function handlePrevious() {
     // alert("Previous");
     //to prevent negative values add a guard if(step>1) only then set the step
-    if (step > 1) setStep(step - 1);
+    //updating stTE BASED ON CURRENT STATE: use a call back function istead of (step-1)
+    if (step > 1) setStep((s) => s - 1);
   }
   function handleNext() {
     // alert("Next");
     //3.step update the step in the event handler
     //step here is the current step:1
-    if (step < 3) setStep(step + 1);
+    if (step < 3) setStep((s) => step + 1);
+    //setStep((s) => step + 1);
   }
   return (
     <>
-      {/*updating the setIsOpen()*/}
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      {/*updating the setIsOpen()
+      updating state base on current value of state is much safer from now on use tht one*/}
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       {isOpen && (
