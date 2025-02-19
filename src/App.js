@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const messages = [
   "Learn React ⚛️",
   "Apply for jobs 💼",
@@ -5,21 +7,29 @@ const messages = [
 ];
 
 function App() {
-  const step = 1;
+  //const step = 1;//we want to make this piece of state dynamic
+  //First we add a new state variable, 2. we use it the code 3. we update the piece of state in some event handler
+  //note that useState function is known as a hook; we can identify a hook by use... and also you can only call a hook on the top level of the component function; also not in the if statement
+  const [step, setStep] = useState(1);
   //event handler function right in the component
   function handlePrevious() {
-    alert("Previous");
+    // alert("Previous");
+    //to prevent negative values add a guard if(step>1) only then set the step
+    if (step > 1) setStep(step - 1);
   }
   function handleNext() {
-    alert("Next");
+    // alert("Next");
+    //3.step update the step in the event handler
+    //step here is the current step:1
+    if (step < 3) setStep(step + 1);
   }
   return (
     <>
       <div className="steps">
         <div className="numbers">
-          <div className={`${step >= 1 ? "active" : ""}`}>1</div>
-          <div className={`${step >= 2 ? "active" : ""}`}>2</div>
-          <div className={`${step >= 3 ? "active" : ""}`}>3</div>
+          <div className={step >= 1 ? "active" : ""}>1</div>
+          <div className={step >= 2 ? "active" : ""}>2</div>
+          <div className={step >= 3 ? "active" : ""}>3</div>
         </div>
 
         <p className="message">
