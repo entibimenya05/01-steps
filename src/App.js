@@ -6,6 +6,13 @@ const messages = [
 
 function App() {
   const step = 1;
+  //event handler function right in the component
+  function handlePrevious() {
+    alert("Previous");
+  }
+  function handleNext() {
+    alert("Next");
+  }
   return (
     <>
       <div className="steps">
@@ -20,10 +27,22 @@ function App() {
           {step}:{messages[step - 1]}
         </p>
         <div className="buttons">
-          <buton style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+          {/*handling event in react way: click is the event name and we also add on, then we pass in a function; we add an event listerner right where it is going to happen
+          the function will be executed whenever there is a click on this DOM element
+          it is very important to stress that it is a callback function not a function call like this onClick={alert('Test)}*/}
+          <buton
+            style={{ backgroundColor: "#7950f2", color: "#fff" }}
+            // onClick={() => alert("Previous")}
+            //onMouseEnter={() => alert("Test")}
+            onClick={handlePrevious}
+          >
             Previous
           </buton>
-          <buton style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+          <buton
+            style={{ backgroundColor: "#7950f2", color: "#fff" }}
+            // onClick={() => alert("Next")}
+            onClick={handleNext}
+          >
             Next
           </buton>
         </div>
